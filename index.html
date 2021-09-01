@@ -2,12 +2,20 @@
 
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/event-calendar.css">
 </head>
 
 <body>
     <div id="event-calendar">
     </div>
-    <script src="file.js"></script>
+    <script src="js/event-calendar.js"></script>
+    <script>
+        let events = getMockData();
+        drawGrid()
+        setNextDates()
+        setPreviousDates()
+        setMonthTitle()
+        mapEvents(events);
+    </script>
 </body>
 </html>

@@ -1,8 +1,22 @@
+/*  * * * * * BASIC USAGE * * * * *
 
+        let events = getMockData();
+        drawGrid()
+        setNextDates()
+        setPreviousDates()
+        setMonthTitle()
+        mapEvents(events);
+
+*/
+
+
+/*  * * * * * SETTINGS * * * * */
 const days = 7;
 const shownWeeks = 5;
 const middleWeek = 2;
 const maxCellRecords = 4;
+
+let calendarContainer = document.getElementById('event-calendar');
 
 var d = new Date();
 var curWeekDay = d.getDay() - 1;
@@ -17,52 +31,6 @@ class CalendarEvent {
 }
 
 
-let calendarContainer = document.getElementById('event-calendar');
-
-
-let events = [
-
-    new CalendarEvent("Андрей Сотников", getShiftedDayId(5)),
-    new CalendarEvent("Ольга Петраускаc", getShiftedDayId(5)),
-    new CalendarEvent("Юрий Сотников", getShiftedDayId(5)),
-    new CalendarEvent("Сергей Слободян", getShiftedDayId(5)),
-    new CalendarEvent("Александр Рыкун", getShiftedDayId(5)),
-    new CalendarEvent("Денис Фонвизин", getShiftedDayId(2)),
-    new CalendarEvent("Андрей Сотников", getShiftedDayId(2)),
-    new CalendarEvent("Антон Кинев", getShiftedDayId(-5)),
-    new CalendarEvent("Владимир Соболев", getShiftedDayId(1)),
-    new CalendarEvent("Алина Маркова", getShiftedDayId(1)),
-    new CalendarEvent("Юлия Поправко", getShiftedDayId(-5)),
-    new CalendarEvent("Генадий Селезнёв", getShiftedDayId(2)),
-    new CalendarEvent("Константин Проковьев", getShiftedDayId(2)),
-    new CalendarEvent("Антон Кинев", getShiftedDayId(-5)),
-
-
-    new CalendarEvent("Марта Крикленко", getShiftedDayId(-2)),
-    new CalendarEvent("Ольга Пушная", getShiftedDayId(-2)),
-    new CalendarEvent("Алексей Субботин", getShiftedDayId(-1)),
-
-    new CalendarEvent("Алексей Субботин", getShiftedDayId(-7)),
-    new CalendarEvent("Владимир Соболев", getShiftedDayId(-7)),
-    new CalendarEvent("Алина Маркова", getShiftedDayId(-7)),
-    new CalendarEvent("Юлия Поправко", getShiftedDayId(-7)),
-    new CalendarEvent("Юрий Сотников", getShiftedDayId(-7)),
-    new CalendarEvent("Сергей Слободян", getShiftedDayId(-7)),
-    new CalendarEvent("Александр Рыкун", getShiftedDayId(-7)),
-
-
-]
-
-
-drawGrid()
-setNextDates()
-setPreviousDates()
-setMonthTitle()
-setNames()
-
-
-
-
 
 
 function drawGrid() {
@@ -71,7 +39,7 @@ function drawGrid() {
     monthHeader.setAttribute("id", "month-header")
     calendarContainer.appendChild(monthHeader);
 
-    var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',"Sun"];
     //draw header
     var weekDiv = document.createElement("div");
     weekDiv.classList.add("weekdiv")
@@ -82,9 +50,7 @@ function drawGrid() {
         dayDiv.appendChild(document.createTextNode(`${dayNames[dayIndex]}`));
         dayDiv.classList.add("headerdiv")
         weekDiv.appendChild(dayDiv)
-
     }
-
     //draw content
     for (let weekIndex = 0; weekIndex < shownWeeks; weekIndex++) {
 
@@ -221,41 +187,71 @@ function setMonthTitle() {
     header.innerHTML = title;
 }
 
-function setNames() {
+function mapEvents(events) {
     events.forEach(element => {
         let dayDivContent = document.getElementById(element.date);
-        if (dayDivContent.childNodes.length < maxCellRecords) {
-            let value = dayDivContent.innerHTML;
-            dayDivContent.innerHTML = value + `<p>${element.name}</p>`;
-        }
-        switch (dayDivContent.childNodes.length) {
-            case 1:
-                dayDivContent.classList.add("one-student-load")
-                break
-            case 2:
-                dayDivContent.classList.add("two-student-load")
-                break;
-            case 3:
-                dayDivContent.classList.add("three-student-load")
-                break;
-            case 4:
-                dayDivContent.classList.add("four-student-load")
-                break;
-            case 5:
-                dayDivContent.classList.add("four-student-load")
-                break;
-            case 6:
-                dayDivContent.classList.add("four-student-load")
-                break;
-
+        if (dayDivContent != null) {
+            if (dayDivContent.childNodes.length < maxCellRecords) {
+                let value = dayDivContent.innerHTML;
+                dayDivContent.innerHTML = value + `<p>${element.name}</p>`;
+            }
+            switch (dayDivContent.childNodes.length) {
+                case 1:
+                    dayDivContent.classList.add("one-student-load")
+                    break
+                case 2:
+                    dayDivContent.classList.add("two-student-load")
+                    break;
+                case 3:
+                    dayDivContent.classList.add("three-student-load")
+                    break;
+                case 4:
+                    dayDivContent.classList.add("four-student-load")
+                    break;
+                case 5:
+                    dayDivContent.classList.add("four-student-load")
+                    break;
+                case 6:
+                    dayDivContent.classList.add("four-student-load")
+                    break;
+            }
         }
     });
 }
 
+function getMockData() {
+
+    let events = [
+
+        new CalendarEvent("Андрей Сотников", getShiftedDayId(5)),
+        new CalendarEvent("Ольга Петраускаc", getShiftedDayId(5)),
+        new CalendarEvent("Юрий Сотников", getShiftedDayId(5)),
+        new CalendarEvent("Сергей Слободян", getShiftedDayId(5)),
+        new CalendarEvent("Александр Рыкун", getShiftedDayId(5)),
+        new CalendarEvent("Денис Фонвизин", getShiftedDayId(2)),
+        new CalendarEvent("Андрей Сотников", getShiftedDayId(2)),
+        new CalendarEvent("Антон Кинев", getShiftedDayId(-5)),
+        new CalendarEvent("Владимир Соболев", getShiftedDayId(1)),
+        new CalendarEvent("Алина Маркова", getShiftedDayId(1)),
+        new CalendarEvent("Юлия Поправко", getShiftedDayId(-5)),
+        new CalendarEvent("Генадий Селезнёв", getShiftedDayId(2)),
+        new CalendarEvent("Константин Проковьев", getShiftedDayId(2)),
+        new CalendarEvent("Антон Кинев", getShiftedDayId(-5)),
 
 
+        new CalendarEvent("Марта Крикленко", getShiftedDayId(-2)),
+        new CalendarEvent("Ольга Пушная", getShiftedDayId(-2)),
+        new CalendarEvent("Алексей Субботин", getShiftedDayId(-1)),
 
+        new CalendarEvent("Алексей Субботин", getShiftedDayId(-7)),
+        new CalendarEvent("Владимир Соболев", getShiftedDayId(-7)),
+        new CalendarEvent("Алина Маркова", getShiftedDayId(-7)),
+        new CalendarEvent("Юлия Поправко", getShiftedDayId(-7)),
+        new CalendarEvent("Юрий Сотников", getShiftedDayId(-7)),
+        new CalendarEvent("Сергей Слободян", getShiftedDayId(-7)),
+        new CalendarEvent("Александр Рыкун", getShiftedDayId(-7)),
 
+    ]
 
-
-
+    return events;
+}
