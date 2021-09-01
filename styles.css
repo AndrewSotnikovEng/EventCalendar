@@ -1,0 +1,58 @@
+.daydiv {
+    width: 120px;
+    height: 90px;
+    float: left;
+    margin: 2px auto;
+    border-color:grey;   
+    border-style: solid;
+    border-width: 2px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 2pt;
+}
+
+.daydiv-header {
+
+    background-color:coral;
+}
+
+.headerdiv {
+    width: 120px;
+    height: 20px;
+    float: left;
+    margin: 2px auto;
+    border-color:grey;   
+    border-style: solid;
+    border-width: 2px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 2pt;
+    background-color: skyblue;
+    color: snow;
+}
+
+.weekdiv {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+#event-calendar {
+    width: 940px;
+    height: 600px;
+    margin: 30px auto;
+}
+
+.curdaydiv {
+    background-color: blanchedalmond;
+    border-color:blue;
+    border-width: 5px;
+}
+
+#month-header {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
