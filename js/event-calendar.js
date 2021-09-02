@@ -1,10 +1,7 @@
 /*  * * * * * BASIC USAGE * * * * *
 
         let events = getMockData();
-        drawGrid()
-        setNextDates()
-        setPreviousDates()
-        setMonthTitle()
+        drawCalendar();
         mapEvents(events);
 
 */
@@ -263,7 +260,13 @@ function getMockData() {
     return events;
 }
 
-//rewrite your own handler
+//provide own handler implementation
 function dayDivOnClickHandler(dayDiv) {
     console.log(`Clicked div with ID: ${dayDiv.lastChild.id}`)
+
+    let selectedDaydivsCount = document.getElementsByClassName('selected-day-div').length;
+    if (selectedDaydivsCount && !dayDiv.classList.contains("selected-day-div")) {
+        document.getElementsByClassName('selected-day-div')[0].classList.remove("selected-day-div")
+    }
+    dayDiv.classList.toggle("selected-day-div");
 }
