@@ -67,6 +67,7 @@ function drawGrid() {
         for (let dayIndex = 0; dayIndex < days; dayIndex++) {
 
             var dayDiv = document.createElement("div")
+            dayDiv.setAttribute("onClick", "dayDivOnClickHandler(this)");
 
             dayDivHeader = document.createElement("div")
             dayDivHeader.classList.add("daydiv-header")
@@ -260,4 +261,9 @@ function getMockData() {
     ]
 
     return events;
+}
+
+//rewrite your own handler
+function dayDivOnClickHandler(dayDiv) {
+    console.log(`Clicked div with ID: ${dayDiv.lastChild.id}`)
 }
