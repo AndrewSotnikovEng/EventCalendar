@@ -31,6 +31,12 @@ class CalendarEvent {
 }
 
 
+function drawCalendar() {
+    drawGrid()
+    setNextDates()
+    setPreviousDates()
+    setMonthTitle()
+}
 
 
 function drawGrid() {
@@ -39,7 +45,7 @@ function drawGrid() {
     monthHeader.setAttribute("id", "month-header")
     calendarContainer.appendChild(monthHeader);
 
-    var dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',"Sun"];
+    var dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', "Sun"];
     //draw header
     var weekDiv = document.createElement("div");
     weekDiv.classList.add("weekdiv")
